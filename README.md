@@ -17,7 +17,7 @@ Run the full ML workflow entirely inside a Snowflake Notebook. No local environm
 
 ## What the Notebook Does
 
-The single notebook (`CLV_MODEL_NOTEBOOK.ipynb`) runs an end-to-end Expected Monthly Value regression pipeline:
+The single notebook (`CUSTOMER_VALUE_MODEL_NOTEBOOK.ipynb`) runs an end-to-end Expected Monthly Value regression pipeline:
 
 | Step | What Happens |
 |------|--------------|
@@ -36,7 +36,7 @@ The single notebook (`CLV_MODEL_NOTEBOOK.ipynb`) runs an end-to-end Expected Mon
 ```
 01_snowflake_notebooks/
 ├── README.md                        # This file
-└── CLV_MODEL_NOTEBOOK.ipynb         # Full pipeline (import into Snowsight)
+└── CUSTOMER_VALUE_MODEL_NOTEBOOK.ipynb         # Full pipeline (import into Snowsight)
 ```
 
 All helper functions (versioning, Feature Store/Registry creation, SQL formatting, feature engineering) are defined inline in the notebook cells — no external `.py` files required.
@@ -67,7 +67,7 @@ All helper functions (versioning, Feature Store/Registry creation, SQL formattin
 |-|------------------------|---------------------|
 | **Where code lives** | Inline in Snowflake Notebook | Local `.ipynb` + `.py` files |
 | **Session** | `get_active_session()` (automatic) | `Session.builder.configs(...)` via connection file |
-| **HPO compute** | `scale_cluster(5)` — scales the notebook container cluster | `@remote("CLV_MODEL_POOL_CPU")` — submits an ML Job to a separate compute pool |
+| **HPO compute** | `scale_cluster(5)` — scales the notebook container cluster | `@remote("CUSTOMER_VALUE_MODEL_POOL_CPU")` — submits an ML Job to a separate compute pool |
 | **External files** | None — everything is self-contained | `feature_engineering_fns.py`, `helper/useful_fns.py` |
 | **Best for** | Learning, demos, fast iteration | Teams with local IDE workflows who need SPCS-backed training |
 
@@ -76,13 +76,13 @@ All helper functions (versioning, Feature Store/Registry creation, SQL formattin
 - Completed `Step01_Setup.ipynb` (creates database, tables, mock data)
 - Access to Snowsight
 - A warehouse (e.g. `RETAIL_REGRESSION_DEMO_WH`)
-- A CPU compute pool (e.g. `CLV_MODEL_POOL_CPU`) for HPO and inference service
+- A CPU compute pool (e.g. `CUSTOMER_VALUE_MODEL_POOL_CPU`) for HPO and inference service
 
 ## Quick Start
 
 1. Log into Snowsight
 2. Navigate to **Notebooks** → **Import .ipynb file**
-3. Upload `CLV_MODEL_NOTEBOOK.ipynb`
+3. Upload `CUSTOMER_VALUE_MODEL_NOTEBOOK.ipynb`
 4. Select your warehouse and compute pool, then run cells top-to-bottom
 
 ## Snowflake Services Used
