@@ -28,6 +28,7 @@ The single notebook (`CUSTOMER_VALUE_MODEL_NOTEBOOK.ipynb`) runs an end-to-end E
 | **HPO + Training** | Uses `tune.Tuner` with `RandomSearch` (10 trials) over an XGBoost regression pipeline, distributed across the notebook cluster via `scale_cluster(5)` |
 | **Experiment tracking** | Logs params, metrics, and model artifacts per trial using `ExperimentTracking` |
 | **Model promotion** | Selects best trial, sets default version, alias (`PROD`), tag, and copies to a `PROD_SCHEMA` |
+| **Model explainability** | Runs the best model's `explain` function on a sample of training data, visualises SHAP values with a violin plot |
 | **Inference service** | Deploys the model as a container service on SPCS for real-time predictions |
 | **Model monitoring** | Configures a `ModelMonitor` for ongoing performance tracking |
 
@@ -95,6 +96,7 @@ All helper functions (versioning, Feature Store/Registry creation, SQL formattin
 - `scale_cluster` (notebook container scaling)
 - SPCS Model Service (real-time inference)
 - Model Monitoring
+- Model Explainability (SHAP-based `explain` + `plot_violin`)
 
 ## Related Repos
 
